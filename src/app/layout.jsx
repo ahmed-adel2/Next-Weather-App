@@ -1,8 +1,6 @@
 import NavBar from '@/components/Navbar/page'
 import '@/styles/globals.css'
-import PageLoader from 'next/dist/client/page-loader'
 import { Inter } from 'next/font/google'
-import { Suspense } from 'react'
 import ThemeProvider from '@/context/Theme'
 import SearchProvider from '@/context/SearchBtn'
 
@@ -20,14 +18,12 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/Rashad's Tag Pic.jpeg" />
       </head>
       <body className={inter.className}>
-        <Suspense fallback={<PageLoader />}>
           <ThemeProvider>
             <NavBar />
             <SearchProvider>
               {children}
             </SearchProvider>
           </ThemeProvider>
-        </Suspense>
       </body>
     </html>
   )
