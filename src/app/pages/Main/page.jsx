@@ -3,7 +3,6 @@
 //https://www.weatherapi.com/my/ "this is where i got my weather api, and API-KEY needs update every month"
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "./page.module.css"
-import Image from 'next/image'
 import Search from '@/components/Search/Search'
 import { SearchContext } from '@/context/SearchBtn'
 import { ThemeContext } from '@/context/Theme'
@@ -12,8 +11,10 @@ const Main = () => {
 
     const { geoLocation } = useContext(SearchContext) // i have to make the provider include even this page not only the <Search /> component by adding the provider in the layout to include everything.
     const [place, setPlace] = useState("")
+    console.log(place)
+    console.log(geoLocation)
 
-    let url = `http://api.weatherapi.com/v1/current.json?key=${"5cfaf19d4e904543a72184202231108"}&q=${geoLocation}=bulk`;
+    let url = `http://api.weatherapi.com/v1/current.json?key=${"5cfaf19d4e904543a72184202231108"}&q=${geoLocation}&aqi=yes`;
 
     useEffect(() => {
         fetch(url)
@@ -35,17 +36,17 @@ const Main = () => {
         const {theme} = useContext(ThemeContext)
 
         if (geoLocation === ""){
-            return (<p className={styles.beforeSearch}>Your Location's Weather <br /> Information Goes Here..</p>)
-        } else if (place[0] === 'Bulk') {
+            return (<p className={styles.beforeSearch}>Your Location's Weather<br /> Information Goes Here..</p>)
+        } else if (place === "") {
             return (<p className={styles.beforeSearch}>Please, Enter a Valid Location</p>)
-        } else if (place[0] === 'Mahne Israel') {
+        } else if (place[0] === 'Israel') {
             return (<p className={styles.beforeSearch}>What you searched for is not found in the map. Do you mean Palestine?</p>)
         } else {
             return (
             <>
                 <div className={styles.resultHolder}>
                     <div className={theme === 'light' ? styles.light : styles.dark}>
-                        <Image srcset={place[5]} width={120} height={100} alt={"Weather Icon"} />
+                        {place[5] ? <img src={`http:${place[5]}`} width={120} height={100} alt={"Weather Icon"} /> : ""}
                         <h1 className={styles.weatherStatus}>{place[3]}°C / <span className={styles.weatherCondition}>{place[4]}</span></h1>
                         <h4>Humidity: {place[7]} / Wind: {place[6]}Km/h</h4>
                         <p>{place[0]}, {place[1]}</p>
