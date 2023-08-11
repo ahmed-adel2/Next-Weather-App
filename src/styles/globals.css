@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.light {
+  background-image: url("/sunshine background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height:100vh;
+}
+
+.dark {
+  background-image: url("/night background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height:100vh;
+}
+
+.themeTrans {
+  transition: 1s ease-in-out
+}
