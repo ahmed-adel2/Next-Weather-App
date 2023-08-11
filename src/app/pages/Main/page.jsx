@@ -4,7 +4,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "./page.module.css"
 import Image from 'next/image'
-import { Tooltip } from '@mantine/core';
 import Search from '@/components/Search/Search'
 import { SearchContext } from '@/context/SearchBtn'
 import { ThemeContext } from '@/context/Theme'
@@ -14,7 +13,7 @@ const Main = () => {
     const { geoLocation } = useContext(SearchContext) // i have to make the provider include even this page not only the <Search /> component by adding the provider in the layout to include everything.
     const [place, setPlace] = useState("")
 
-    let url = `http://api.weatherapi.com/v1/current.json?key=${"b4e9b747514044b3bb9200659230908"}&q=${geoLocation}=bulk`;
+    let url = `http://api.weatherapi.com/v1/current.json?key=${"5cfaf19d4e904543a72184202231108"}&q=${geoLocation}=bulk`;
 
     useEffect(() => {
         fetch(url)
@@ -36,7 +35,7 @@ const Main = () => {
         const {theme} = useContext(ThemeContext)
 
         if (geoLocation === ""){
-            return (<p className={styles.beforeSearch}>Your Location's Weather<br /> Information Goes Here..</p>)
+            return (<p className={styles.beforeSearch}>Your Location's Weather <br /> Information Goes Here..</p>)
         } else if (place[0] === 'Bulk') {
             return (<p className={styles.beforeSearch}>Please, Enter a Valid Location</p>)
         } else if (place[0] === 'Mahne Israel') {
