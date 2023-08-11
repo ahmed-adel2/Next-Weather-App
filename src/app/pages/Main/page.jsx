@@ -11,10 +11,8 @@ const Main = () => {
 
     const { geoLocation } = useContext(SearchContext) // i have to make the provider include even this page not only the <Search /> component by adding the provider in the layout to include everything.
     const [place, setPlace] = useState("")
-    console.log(place)
-    console.log(geoLocation)
 
-    let url = `http://api.weatherapi.com/v1/current.json?key=${"5cfaf19d4e904543a72184202231108"}&q=${geoLocation}&aqi=yes`;
+    let url = `https://api.weatherapi.com/v1/current.json?key=${'5cfaf19d4e904543a72184202231108'}&q=${geoLocation}&aqi=yes`;
 
     useEffect(() => {
         fetch(url)
@@ -46,7 +44,7 @@ const Main = () => {
             <>
                 <div className={styles.resultHolder}>
                     <div className={theme === 'light' ? styles.light : styles.dark}>
-                        {place[5] ? <img src={`http:${place[5]}`} width={120} height={100} alt={"Weather Icon"} /> : ""}
+                        {place[5] ? <img src={`https:${place[5]}`} width={120} height={100} alt={"Weather Icon"} /> : ""}
                         <h1 className={styles.weatherStatus}>{place[3]}°C / <span className={styles.weatherCondition}>{place[4]}</span></h1>
                         <h4>Humidity: {place[7]} / Wind: {place[6]}Km/h</h4>
                         <p>{place[0]}, {place[1]}</p>
